@@ -1,6 +1,8 @@
 package Checkers;
 
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 public class Checkers extends JPanel
@@ -9,7 +11,9 @@ public class Checkers extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = -6799064229355729609L;
-
+	private static int x=0;
+	private static int y=0;
+	
 	public void paintComponent(Graphics g)
 	{
 		int height=getHeight();
@@ -34,4 +38,45 @@ public class Checkers extends JPanel
 		g.drawLine(width,0,width,height);
 		
 	}
+	
+	public Checkers()
+	{
+		addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent e)
+			{
+				System.out.println(e);
+				x=e.getX();
+				y=e.getY();
+				
+			}
+		});
+	}
+	
+	public static void select()
+	{
+		
+	}
+	
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
