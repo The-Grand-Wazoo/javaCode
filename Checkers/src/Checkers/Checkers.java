@@ -48,14 +48,14 @@ public class Checkers extends JPanel
 				System.out.println(e);
 				x=e.getX();
 				y=e.getY();
-				
+				select();
 			}
 		});
 	}
 	
 	public static void select()
 	{
-		
+		System.out.println(x);
 	}
 	
 
