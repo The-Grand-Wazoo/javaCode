@@ -2,15 +2,24 @@ package Checkers;
 
 public class Pieces
 {
+	
+	@SuppressWarnings("unused")
+	private static int[][] pieces;
 
-	public static void player1()
+	public static int[][] pieces()
 	{
+		return pieces=new int[][]{
+				{1,0,0,0,0,0,1,0},
+				{0,1,0,0,0,0,0,1},
+				{1,0,0,0,0,0,1,0},
+				{0,1,0,0,0,0,0,1},
+				{1,0,0,0,0,0,1,0},
+				{0,1,0,0,0,0,0,1},
+				{1,0,0,0,0,0,1,0},
+				{0,1,0,0,0,0,0,1}};
+		
 		
 	}
 	
-	public static void player2()
-	{
-		
-	}
 	
-}
+} 
