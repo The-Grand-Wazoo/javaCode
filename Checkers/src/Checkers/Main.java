@@ -16,15 +16,17 @@ public class Main
 		window.setSize(600,600);
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
+		window.setResizable(false);
 		content.setLayout(new GridLayout());
 		content.add(game);
+		
 		
 	}
 
 	public static void main(String[] args) 
 	{
 		gameWindow();
-		//Checkers.select();
-	}
+		
+	} 
 
 }
