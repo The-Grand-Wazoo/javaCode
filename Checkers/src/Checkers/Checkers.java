@@ -47,8 +47,8 @@ public class Checkers extends JPanel
 			public void mousePressed(MouseEvent e)
 			{
 				System.out.println(e);
-				x=(int)e.getX()/74;
-				y=(int)e.getY()/74;
+				x=(int)e.getX()/74;//divide by 74 so the position of the cell can be used in a 
+				y=(int)e.getY()/74;//2D array
 				pieces();
 			}
 		});
