@@ -47,8 +47,8 @@ public class Checkers extends JPanel
 			public void mousePressed(MouseEvent e)
 			{
 				System.out.println(e);
-				x=(int)e.getX()/71;
-				y=(int)e.getY()/71;
+				x=(int)e.getX()/74;
+				y=(int)e.getY()/74;
 				pieces();
 			}
 		});
