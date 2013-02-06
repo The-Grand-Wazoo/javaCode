@@ -13,6 +13,7 @@ public class Checkers extends JPanel
 	private static final long serialVersionUID = -6799064229355729609L;
 	private static int x=0;
 	private static int y=0;
+	private static int[][] pieces;
 	
 	public void paintComponent(Graphics g)
 	{
@@ -46,16 +47,19 @@ public class Checkers extends JPanel
 			public void mousePressed(MouseEvent e)
 			{
 				System.out.println(e);
-				x=e.getX();
-				y=e.getY();
-				select();
+				x=(int)e.getX()/71;
+				y=(int)e.getY()/71;
+				pieces();
 			}
 		});
 	}
 	
-	public static void select()
+	public static void pieces()
 	{
-		System.out.println(x);
+		pieces=Pieces.pieces();
+		int selectedPiece=pieces[x][y];
+		System.out.println(selectedPiece);
+		
 	}
 	
 
