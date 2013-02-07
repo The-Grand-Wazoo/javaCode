@@ -9,7 +9,7 @@ public class Pieces
 	public static int[][] pieces()
 	{
 		return pieces=new int[][]{
-				{1,0,0,0,0,0,1,0},
+				{1,0,0,0,0,0,1,0},//pieces are on the tops
 				{0,1,0,0,0,0,0,1},
 				{1,0,0,0,0,0,1,0},
 				{0,1,0,0,0,0,0,1},
