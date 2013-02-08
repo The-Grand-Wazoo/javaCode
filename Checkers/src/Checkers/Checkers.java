@@ -11,9 +11,19 @@ public class Checkers extends JPanel
 	 * 
 	 */
 	private static final long serialVersionUID = -6799064229355729609L;
-	private static int x=0;
-	private static int y=0;
-	private static int[][] pieces;
+	private static int x;//x coordinate of piece selected
+	private static int y;//y coordinate of piece selected
+	private static int x1;//x coordinate of move
+	private static int y1;//y coordinate of move
+	private static int[][] pieces=new int[][]{
+		{1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1},
+		{1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1},
+		{1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1},
+		{1,0,0,0,0,0,1,0},
+		{0,1,0,0,0,0,0,1}};
 	
 	public void paintComponent(Graphics g)
 	{
@@ -54,15 +64,31 @@ public class Checkers extends JPanel
 		});
 	}
 	
-	public static void pieces()
+	public void pieces()
 	{
-		pieces=Pieces.pieces();
 		int selectedPiece=pieces[x][y];
+		addMouseListener(new MouseAdapter()
+		{
+			public void mousePressed(MouseEvent x)
+			{
+				System.out.println(x);
+				x1=(int)x.getX()/74;//divide by 74 so the position of the cell can be used in a 
+				y1=(int)x.getY()/74;//2D array
+				pieces();
+			}
+		});
 		System.out.println(selectedPiece);
+		pieces[x1][y1]=selectedPiece;
+		System.out.println(selectedPiece);
+		
 		
 	}
 	
-
+	public static void move()
+	{
+		
+	}
+	
 	
 }
 
