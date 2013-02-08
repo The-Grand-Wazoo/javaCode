@@ -1,3 +1,7 @@
+/*
+ * John Sinclair
+ */
+
 package Checkers;
 
 import java.awt.Container;

@@ -16,7 +16,7 @@ public class Checkers extends JPanel
 	private static int x1;//x coordinate of move
 	private static int y1;//y coordinate of move
 	private static int[][] pieces=new int[][]{
-		{1,0,0,0,0,0,1,0},
+		{1,0,0,0,0,0,1,0},//pieces are on top
 		{0,1,0,0,0,0,0,1},
 		{1,0,0,0,0,0,1,0},
 		{0,1,0,0,0,0,0,1},
