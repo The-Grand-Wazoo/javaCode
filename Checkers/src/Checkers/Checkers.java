@@ -32,11 +32,7 @@ public class Checkers extends JPanel
     
     public void paintComponent(Graphics g)
     {
-	    ImageIcon red= new ImageIcon("C:\\Users\\John\\git\\javaCode\\Checkers\\src\\Checkers");
-	    ImageIcon black= new ImageIcon("");
-	    JLabel redPiece = new JLabel(red);
-	    JLabel blackPiece= new JLabel(black);
-   
+    	
         int height=getHeight();
         int width=getWidth();
         
