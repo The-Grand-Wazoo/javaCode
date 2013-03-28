@@ -92,6 +92,7 @@ public class Checkers extends JPanel
 	                	System.out.println(selected);
 	                	JOptionPane.showMessageDialog(null,"There is already a piece there");
 	                	System.out.println("There is already a piece there");
+	                	move=0;
 	                
 	                }
 	                else
