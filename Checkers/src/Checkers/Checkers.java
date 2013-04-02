@@ -58,6 +58,7 @@ public class Checkers extends JPanel
         g.drawLine((3*width)/4,0,(3*width)/4,height);
         g.drawLine((7*width)/8,0,(7*width)/8,height);
         g.drawLine(width,0,width,height);        
+        
     }
     
     public void pieces(Graphics g)
@@ -82,7 +83,7 @@ public class Checkers extends JPanel
     	}
     				
     }
-   
+    
     public Checkers()
     {
         addMouseListener(new MouseAdapter()
@@ -153,28 +154,32 @@ public class Checkers extends JPanel
 		 	                pieces[x1][y1]=0;
 		 	                move=0;
 		 	                
-		 	                if(player=="white"&&pieces[x+1][y+1]==-1||player=="white"&&pieces[x-1][y+1]==-1)
-		 	                {
-		 	                	if(checkJump()==true)
-		 	                		player="white";
-		 	                }
-		 	                else if(player=="black"&&pieces[x+1][y-1]==1||player=="black"&&pieces[x-1][y-1]==1)
-		 	                {
-		 	                	//if(pieces[x+2][y-2]==1||pieces[x-2][y-2]==1)
-		 	                		//player="white";
-		 	                	if(checkJump()==true)
-		 	                		player="black";
-		 	                }	 	                 	                 
-			 	            if(player=="white")
+		 	                if(player=="white")
 			 	            	whiteScore+=1;
 			 	            else
 			 	                blackScore+=1;
-			 	           if(player=="black")
+		 	                /*
+		 	                if(checkDoubleJump()==true)
+		 	                {
+		 	                	if(player=="white")
+		 	                		player="white";
+		 	                	else if(player=="black")
+		 	                		player="black";
+		 	                }
+		 	                else
+		 	                {
+		 	                	if(player=="black")
+				 	            	player="white";
+				 	            else
+				 	               	player="black";
+		 	                }
+			 	            */
+		 	               if(player=="black")
 			 	            	player="white";
 			 	            else
 			 	               	player="black";
-		 	                
-			 	            if(whiteScore==8)
+
+		 	               if(whiteScore==8)
 			 	            	JOptionPane.showMessageDialog(null, "Congratulations White, you win!");
 			 	            else if(blackScore==8)
 			 	            	JOptionPane.showMessageDialog(null, "Congratulations Black, you win!");
@@ -250,7 +255,7 @@ public class Checkers extends JPanel
     		{
     			if(pieces[x1+1][y1-1]==1)
     			{
-    				pieces[x1-1][y1-1]=0;
+    				pieces[x1+1][y1-1]=0;
     				return true;
     			}
     			else
@@ -270,6 +275,27 @@ public class Checkers extends JPanel
 	    		return false;		    
     	}
     	
+    }
+    
+    public static boolean checkDoubleJump()
+    {
+    	if(player=="black")
+    	{
+    		if(pieces[x1+1][y1+1]==1||pieces[x1-1][y1+1]==1)
+    		{
+    			if(pieces[x1+2][y1+2]==0||pieces[x1-2][y1+2]==0)
+    				return true;
+    		}
+    	}
+    	else if(player=="white")
+    	{
+    		if(pieces[x1+1][y1-1]==-1||pieces[x1-1][y1-1]==-1)
+    		{
+    			if(pieces[x1+2][y1-2]==0||pieces[x1-2][y1-2]==0)
+    				return true;
+    		}
+    	}
+    	return false;
     }
     
 }
