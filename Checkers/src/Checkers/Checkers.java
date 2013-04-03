@@ -1,3 +1,6 @@
+/*
+ * John Sinclair
+ */
 package Checkers;
 
 import java.awt.Color;
@@ -8,9 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 public class Checkers extends JPanel
 {
-    /**
-    *
-    */
     private static final long serialVersionUID = -6799064229355729609L;
     private static int x;//x coordinate of piece selected
     private static int y;//y coordinate of piece selected
@@ -92,7 +92,7 @@ public class Checkers extends JPanel
             {   	
                 x=(int)e.getX()/74;//divide by 74 so the position of the cell can be used in a
                 y=(int)e.getY()/74;//2D array
-               
+                
                 if(move==0)//this is when a new piece is selected to move
                 {
                 	x1=x;
@@ -149,7 +149,7 @@ public class Checkers extends JPanel
 	                	}
 	                	else if(checkJump()==true)
 	                	{
-	                		pieces[x][y]=selected;
+	                		pieces[x][y]=selected;//new location selected is equal to the selected piece
 		 	                System.out.println("new location: "+pieces[x][y]);
 		 	                pieces[x1][y1]=0;
 		 	                move=0;
@@ -158,9 +158,10 @@ public class Checkers extends JPanel
 			 	            	whiteScore+=1;
 			 	            else
 			 	                blackScore+=1;
-		 	                /*
-		 	                if(checkDoubleJump()==true)
+		 	                System.out.println(checkJump());
+		 	                if(checkJump()==true)
 		 	                {
+		 	                	//System.out.println("true");
 		 	                	if(player=="white")
 		 	                		player="white";
 		 	                	else if(player=="black")
@@ -168,17 +169,13 @@ public class Checkers extends JPanel
 		 	                }
 		 	                else
 		 	                {
+		 	                	//System.out.println("false");
 		 	                	if(player=="black")
 				 	            	player="white";
 				 	            else
 				 	               	player="black";
 		 	                }
-			 	            */
-		 	               if(player=="black")
-			 	            	player="white";
-			 	            else
-			 	               	player="black";
-
+			 	       
 		 	               if(whiteScore==8)
 			 	            	JOptionPane.showMessageDialog(null, "Congratulations White, you win!");
 			 	            else if(blackScore==8)
@@ -202,14 +199,14 @@ public class Checkers extends JPanel
     	System.out.println("y: "+y);
     	if(player=="white")
     	{
-	    	if(x==x1+1&&y==y1+1)
+	    	if(x==x1+1&&y==y1+1)//x1 is the original location. x is the new location.
 	    		return true;
 	    	else if(x==x1-1&&y==y1+1)
 	    		return true;
 	    	else
 	    		return false;
     	}
-    	else
+    	else if(player=="black")
     	{
     		if(x==x1+1&&y==y1-1)
 	    		return true;
@@ -218,6 +215,7 @@ public class Checkers extends JPanel
 	    	else
 	    		return false;
     	}
+    	return false;
     }
     
     public static boolean checkJump()
@@ -232,8 +230,7 @@ public class Checkers extends JPanel
     				return true;			
     			}
     			else
-    				return false;
-    			
+    				return false;	
     		}
 	    	else if(x==x1-2&&y==y1+2)
 	    	{
@@ -249,7 +246,7 @@ public class Checkers extends JPanel
 	    		return false; 	
     	}
     	
-    	else
+    	else if(player=="black")
     	{
     		if(x==x1+2&&y==y1-2)
     		{
@@ -274,7 +271,8 @@ public class Checkers extends JPanel
 	    	else 
 	    		return false;		    
     	}
-    	
+    	else
+    		return false;
     }
     
     public static boolean checkDoubleJump()
@@ -298,6 +296,34 @@ public class Checkers extends JPanel
     	return false;
     }
     
+    public static boolean checkKing()
+    {
+	    if(player=="black")	
+    		for(int y=0;y<7;y++)
+		    	if(pieces[0][y]==-1)
+		    		return true;
+		else if(player=="white")
+			for(int a=0; a<7; a++)
+				if(pieces[7][a]==1)
+					return true;
+	    return false;
+	    
+    }
+    
+    public static boolean king()
+    {
+    	if(player=="black"&&checkKing()==true)
+    	{
+    		
+    	}
+    	else if(player=="white"&&checkKing()==true)
+    	{
+    		
+    	}
+    	
+    	return false;
+    }
+
 }
 
 
