@@ -29,6 +29,7 @@ public class Checkers extends JPanel
     static int newSelected;
     static int move=0;
     static String player="black";
+    private static String piece="";
     private static int whiteScore=0;
     private static int blackScore=0;
     
@@ -147,21 +148,20 @@ public class Checkers extends JPanel
 		 	                else
 		 	                	player="black";
 	                	}
-	                	else if(checkJump()==true)
+	                	else if(checkJump(x1, y1,x ,y)==true)
 	                	{
 	                		pieces[x][y]=selected;//new location selected is equal to the selected piece
 		 	                System.out.println("new location: "+pieces[x][y]);
 		 	                pieces[x1][y1]=0;
-		 	                move=0;
-		 	                
+		 	                		
 		 	                if(player=="white")
 			 	            	whiteScore+=1;
 			 	            else
 			 	                blackScore+=1;
-		 	                System.out.println(checkJump());
-		 	                if(checkJump()==true)
+		 	                System.out.println(checkDoubleJump(x1,y1));
+		 	                if(checkDoubleJump(x1,y1)==true)//using new x and y postion for checking double jump
 		 	                {
-		 	                	//System.out.println("true");
+		 	                	System.out.println("true");
 		 	                	if(player=="white")
 		 	                		player="white";
 		 	                	else if(player=="black")
@@ -176,14 +176,15 @@ public class Checkers extends JPanel
 				 	               	player="black";
 		 	                }
 			 	       
-		 	               if(whiteScore==8)
+		 	                if(whiteScore==8)
 			 	            	JOptionPane.showMessageDialog(null, "Congratulations White, you win!");
 			 	            else if(blackScore==8)
 			 	            	JOptionPane.showMessageDialog(null, "Congratulations Black, you win!");
+		 	                move=0;
 	                	}
 	                	else
 	                	{
-	                		System.out.println(checkJump());
+	                		//System.out.println(checkJump());
 		                	JOptionPane.showMessageDialog(null, "Not a legal move");
 	                		move=0;
 	                	}
@@ -218,25 +219,25 @@ public class Checkers extends JPanel
     	return false;
     }
     
-    public static boolean checkJump()
+    public static boolean checkJump(int x2, int y2, int a, int b )
     {
     	if(player=="white")
     	{
-    		if(x==x1+2&&y==y1+2)
+    		if(a==x2+2&&b==y2+2)//a and b are the selected piece and the x2/y2 are for the where the piece is moving
     		{
-    			if(pieces[x1+1][y1+1]==-1)
+    			if(pieces[x2+1][y2+1]==-1)
     			{
-    				pieces[x1+1][y1+1]=0;
+    				pieces[x2+1][y2+1]=0;
     				return true;			
     			}
     			else
     				return false;	
     		}
-	    	else if(x==x1-2&&y==y1+2)
+	    	else if(a==x2-2&&b==y2+2)
 	    	{
-	    		if(pieces[x1-1][y1+1]==-1)
+	    		if(pieces[x2-1][y2+1]==-1)
 	    		{
-	    			pieces[x1-1][y1+1]=0;
+	    			pieces[x2-1][y2+1]=0;
 	    			return true;
 	    		}	
     			else
@@ -248,21 +249,21 @@ public class Checkers extends JPanel
     	
     	else if(player=="black")
     	{
-    		if(x==x1+2&&y==y1-2)
+    		if(a==x2+2&&b==y2-2)
     		{
-    			if(pieces[x1+1][y1-1]==1)
+    			if(pieces[x2+1][y2-1]==1)
     			{
-    				pieces[x1+1][y1-1]=0;
+    				pieces[x2+1][y2-1]=0;
     				return true;
     			}
     			else
     				return false;
     		}
-	    	else if(x==x1-2&&y==y1-2)
+	    	else if(a==x2-2&&b==y2-2)
 	    	{
-	    		if(pieces[x1-1][y1-1]==1)
+	    		if(pieces[x2-1][y2-1]==1)
 	    		{
-	    			pieces[x1-1][y1-1]=0;
+	    			pieces[x2-1][y2-1]=0;
 	    			return true;
 	    		}
 	    		else
@@ -275,25 +276,41 @@ public class Checkers extends JPanel
     		return false;
     }
     
-    public static boolean checkDoubleJump()
+   
+    public static boolean checkDoubleJump(int x, int y)//x and y for pieces
     {
     	if(player=="black")
     	{
-    		if(pieces[x1+1][y1+1]==1||pieces[x1-1][y1+1]==1)
+    		for(int a=0; a<7; a++)
     		{
-    			if(pieces[x1+2][y1+2]==0||pieces[x1-2][y1+2]==0)
-    				return true;
-    		}
+    			if(pieces[x][y]!=pieces[0][a])
+    			{	
+	    			if(pieces[x+1][y-1]==1)
+		    			if(pieces[x+2][y-2]==0)
+		    				return true;
+		    		else if(pieces[x-1][y-1]==1)
+		    			if(pieces[x-2][y-2]==0)
+		    				return true;
+    			}
+    		}	    		    			
     	}
     	else if(player=="white")
     	{
-    		if(pieces[x1+1][y1-1]==-1||pieces[x1-1][y1-1]==-1)
+    		for(int a=0; a<7; a++)
     		{
-    			if(pieces[x1+2][y1-2]==0||pieces[x1-2][y1-2]==0)
-    				return true;
-    		}
+    			if(pieces[x][y]!=pieces[0][a])
+    			{	
+	    			if(pieces[x+1][y+1]==-1)
+		    			if(pieces[x+2][y+2]==0)
+		    				return true;
+		    		else if(pieces[x-1][y+1]==-1)
+		    			if(pieces[x-2][y+2]==0)
+		    				return true;
+    			}
+    		}	    		    			
     	}
     	return false;
+    	
     }
     
     public static boolean checkKing()
@@ -314,7 +331,7 @@ public class Checkers extends JPanel
     {
     	if(player=="black"&&checkKing()==true)
     	{
-    		
+    		piece="king";
     	}
     	else if(player=="white"&&checkKing()==true)
     	{

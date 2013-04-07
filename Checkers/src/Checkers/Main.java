@@ -24,7 +24,6 @@ public class Main
 		content.setLayout(new GridLayout());
 		content.add(game);
 		
-		
 	}
 
 	public static void main(String[] args) 
