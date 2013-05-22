@@ -1,6 +1,9 @@
 package pong;
 
 import java.awt.Graphics;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JPanel;
 
 public class Game extends JPanel
@@ -11,6 +14,18 @@ public class Game extends JPanel
 	public void Game()
 	{
 		super.repaint();
+		addKeyListener(new KeyAdapter()
+		{
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode()==KeyEvent.VK_A)
+					System.out.println(y1);
+				else
+					System.out.println(12);
+			}
+		}
+		);
+		System.out.println(14);
 	}
 	public void paintComponent(Graphics g)
 	{
@@ -22,8 +37,10 @@ public class Game extends JPanel
 		g.drawRect(height, y1, 20, 100);
 		
 	}
+	
 	public static void move()
 	{
+		
 		
 	}
 	

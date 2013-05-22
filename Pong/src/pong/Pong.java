@@ -16,11 +16,11 @@ public class Pong
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 		window.setResizable(false);
-		
+		 
 	}
 	public static void main(String[] args)
 	{
-		
+		 
 		createWindow();
 		Game game=new Game();
 		window.add(game);
