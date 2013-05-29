@@ -18,14 +18,15 @@ public class Game extends JPanel
 		{
 			public void keyPressed(KeyEvent e)
 			{
-				if(e.getKeyCode()==KeyEvent.VK_A)
-					System.out.println(y1);
-				else
-					System.out.println(12);
+				KeyPressedEvt(e);
+			
 			}
-		}
-		);
+		});
 		System.out.println(14);
+	}
+	public void KeyPressedEvt(KeyEvent e)
+	{
+		KeyPressedEvt(e);
 	}
 	public void paintComponent(Graphics g)
 	{
